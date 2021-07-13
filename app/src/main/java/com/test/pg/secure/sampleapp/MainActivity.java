@@ -24,23 +24,24 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PaymentParams pgPaymentParams = new PaymentParams();
-        pgPaymentParams.setAPiKey("79e111fb-098d-4730-8c3a-17fe0c30738a");
+        pgPaymentParams.setAPiKey("YOUR API KEY HERE");
         pgPaymentParams.setAmount("2300");
-        pgPaymentParams.setEmail("nvnkumar398@gmail.com");
-        pgPaymentParams.setName("Dragon Booster");
-        pgPaymentParams.setPhone("8248350384");
+        pgPaymentParams.setEmail("XXXXXXX");
+        pgPaymentParams.setName("YYYYYYYY");
+        pgPaymentParams.setPhone("ZZZZZZZZ");
         pgPaymentParams.setOrderId("Nav2848");
         pgPaymentParams.setCurrency("INR");
         pgPaymentParams.setDescription("Dragon city's protector");
-        pgPaymentParams.setCity("Chennai");
-        pgPaymentParams.setState("TamilNadu");
-        pgPaymentParams.setAddressLine1("No 28/39 Muthiah 2nd Street");
-        pgPaymentParams.setAddressLine2("No 28/39 Muthiah 2nd Street");
-        pgPaymentParams.setZipCode("600014");
-        pgPaymentParams.setCountry("India");
-        pgPaymentParams.setReturnUrl("http://159.65.148.139/rest/mcpayment/pgdetails");
-        pgPaymentParams.setReturnUrlFailure("http://159.65.148.139/rest/mcpayment/pgdetails");
-        pgPaymentParams.setReturnUrlCancel("http://159.65.148.139/rest/mcpayment/pgdetails");
+        pgPaymentParams.setCity("XXXXXX");
+        pgPaymentParams.setState("YYYYYY");
+        pgPaymentParams.setAddressLine1("ZZZZZZZZ");
+        pgPaymentParams.setAddressLine2("ZZZZZZZZ");
+        pgPaymentParams.setZipCode("XXXXXX");
+        pgPaymentParams.setCountry("YYYYY");
+        pgPaymentParams.setReturnUrl("YOUR_RETURN_URL");
+        pgPaymentParams.setReturnUrlFailure("YOUR_RETURN_URL");
+        pgPaymentParams.setReturnUrlCancel("YOUR_RETURN_URL");
+        //
         pgPaymentParams.setMode("TEST");
         pgPaymentParams.setUdf1("udf1");
         pgPaymentParams.setUdf2("udf2");
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity{
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-               // paymentListener.OnPaymentCancelled("Transaction failed");
+
             }
 
         }
