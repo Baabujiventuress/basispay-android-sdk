@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.BasispayAndroidPgKit.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.BasispayAndroidPgKit.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BasispayAndroidPgKit.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

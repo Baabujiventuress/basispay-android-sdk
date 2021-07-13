@@ -1,2 +1,1 @@
-# basispay-android-sdk
-Basispay Android SDK
+# Basispay-Android-PgKit
