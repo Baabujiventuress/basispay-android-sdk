@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 
 public class PaymentParams {
     private String api_key;
+    private String salt_key;
     private String amount = "0.00";
     private String email;
     private String name;
@@ -47,6 +48,10 @@ public class PaymentParams {
 
     public String getAPiKey() {
         return this.api_key;
+    }
+
+    public String getSaltKey() {
+        return this.salt_key;
     }
 
     public String getAmount() {
@@ -191,6 +196,10 @@ public class PaymentParams {
 
     public void setAPiKey(String api_key) {
         this.api_key = api_key;
+    }
+
+    public void setSaltKey(String salt_key) {
+        this.salt_key = salt_key;
     }
 
     public void setAmount(String amount) {

@@ -2,6 +2,7 @@ package com.example.paymentgateway;
 
 public class PGConstants {
     public static final String API_KEY = "api_key";
+    public static final String SALT_KEY = "salt_key";
     public static final String AMOUNT = "amount";
     public static final String EMAIL = "email";
     public static final String NAME = "name";

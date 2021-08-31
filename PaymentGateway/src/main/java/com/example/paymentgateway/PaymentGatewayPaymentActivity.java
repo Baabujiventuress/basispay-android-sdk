@@ -47,7 +47,9 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
         this.pb.setVisibility(0);
         String postPaymentRequestParams = this.getIntent().getStringExtra(PGConstants.POST_PARAMS);
         HashMap<String,String> hashParamsMap = (HashMap<String,String>)this.getIntent().getSerializableExtra(PGConstants.HASH_MAP);
-        String hashDict = "69ecafcf78912a3f57a00f0e78ea4194efcd7d24";
+        System.out.println(hashParamsMap.get(PGConstants.SALT_KEY));
+
+        String hashDict = hashParamsMap.get(PGConstants.SALT_KEY);
         TreeMap<String, String> sorted = new TreeMap<>();
         // Copy all data from hashMap into TreeMap
         sorted.putAll(hashParamsMap);
