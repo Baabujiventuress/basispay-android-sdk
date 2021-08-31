@@ -80,7 +80,9 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                     return super.onJsAlert(view, url, message, result);
                 }
             });
-             String postUrl = "https://biz.traknpay.in/v2/paymentrequest?" + postPaymentRequestParams + "&hash=" + hashValue.toUpperCase();
+
+
+             String postUrl = "https://pay.basispay.in/v2/paymentrequest?" + postPaymentRequestParams + "&hash=" + hashValue.toUpperCase();
              String postParamValues =  postPaymentRequestParams + "&hash=" + hashValue.toUpperCase();
             Log.d("postParamValues",postParamValues);
 
