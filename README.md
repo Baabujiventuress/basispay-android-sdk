@@ -29,7 +29,8 @@ Make sure you have the below permissions in your manifest file:
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 ```
-
+Make sure you have the below code in your main activity:
+```
 Random rnd = new Random();
         int n = 100000 + rnd.nextInt(900000);
         SampleAppConstants.PG_ORDER_ID=Integer.toString(n);
