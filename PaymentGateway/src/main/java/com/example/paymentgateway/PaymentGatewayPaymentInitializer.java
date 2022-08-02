@@ -11,8 +11,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class PaymentGatewayPaymentInitializer {
     private Activity context = null;
@@ -161,7 +159,8 @@ public class PaymentGatewayPaymentInitializer {
                                                                     if (paymentParams.getSplitInfo() != null) {
                                                                         this.params.put("split_info", paymentParams.getSplitInfo());
                                                                     }
-
+                                                                    if (paymentParams.getInterface_type() != null)
+                                                                        this.params.put("interface_type", paymentParams.getInterface_type());
                                                                 }
                                                             }
                                                         }
@@ -190,7 +189,7 @@ public class PaymentGatewayPaymentInitializer {
         this.context.startActivityForResult(startActivity, PGConstants.REQUEST_CODE);
     }
 
-    private String buildParamsForPayment() {
+    /*private String buildParamsForPayment() {
         HashMap<String, String> params = this.params;
         StringBuilder hashPostParamsBuilder = new StringBuilder();
         String parameterEntry;
@@ -204,7 +203,42 @@ public class PaymentGatewayPaymentInitializer {
             for(Iterator var3 = sorted.keySet().iterator(); var3.hasNext(); hashPostParamsBuilder = hashPostParamsBuilder.append(parameterEntry)) {
                 String key = (String)var3.next();
                 parameterEntry = key + "=" + (String)sorted.get(key) + "&";
+                //TODO NEW CHANGES 15/07/22
+//                parameterEntry = key + "=" + URLEncoder.encode(sorted.get(key),"UTF-8") + "&";
             }
+            //TODO NEW CHANGES 15/07/22
+//            String interfaceTypeParam = "interface_type=" + URLEncoder.encode("android_sdk", "UTF-8") + "&";
+//            hashPostParamsBuilder = hashPostParamsBuilder.append(interfaceTypeParam);
+        } catch (Exception var6) {
+            StringWriter sw = new StringWriter();
+            var6.printStackTrace(new PrintWriter(sw));
+            parameterEntry = sw.toString();
+            Toast.makeText(this.context, parameterEntry, 0).show();
+        }
+
+        String postParams = hashPostParamsBuilder.toString();
+        return postParams.charAt(postParams.length() - 1) == '&' ? postParams.substring(0, postParams.length() - 1) : postParams;
+    }*/
+
+    private String buildParamsForPayment() {
+        HashMap<String, String> params = this.params;
+        StringBuilder hashPostParamsBuilder = new StringBuilder();
+
+        String parameterEntry;
+        String interfaceTypeParam;
+        try {
+            Iterator var3 = params.keySet().iterator();
+
+            while(var3.hasNext()) {
+                String key = (String)var3.next();
+                if (!key.equals("pg_payment_hostname") && !key.equals("salt_key")) {
+                    parameterEntry = key + "=" + URLEncoder.encode((String)params.get(key), "UTF-8") + "&";
+                    hashPostParamsBuilder = hashPostParamsBuilder.append(parameterEntry);
+                }
+            }
+
+//            interfaceTypeParam = "interface_type=" + URLEncoder.encode("android_sdk", "UTF-8") + "&";
+//            hashPostParamsBuilder = hashPostParamsBuilder.append(interfaceTypeParam);
         } catch (Exception var6) {
             StringWriter sw = new StringWriter();
             var6.printStackTrace(new PrintWriter(sw));

@@ -42,6 +42,8 @@ public class PaymentParams {
     private String allowed_bank_codes;
     private String allowed_bins;
     private String split_info;
+    private String pg_payment_hostname;
+    private String interface_type;
 
     public PaymentParams() {
     }
@@ -192,6 +194,14 @@ public class PaymentParams {
 
     public String getSplitInfo() {
         return this.split_info;
+    }
+
+    public String getPaymentHostname() {
+        return this.pg_payment_hostname;
+    }
+
+    public String getInterface_type() {
+        return interface_type;
     }
 
     public void setAPiKey(String api_key) {
@@ -350,6 +360,14 @@ public class PaymentParams {
 
     public void setSplitInfo(String split_info) {
         this.split_info = split_info;
+    }
+
+    public void setPaymentHostname(String pg_payment_hostname) {
+        this.pg_payment_hostname = pg_payment_hostname;
+    }
+
+    public void setInterface_type(String interface_type) {
+        this.interface_type = interface_type;
     }
 }
 

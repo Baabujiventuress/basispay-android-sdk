@@ -37,11 +37,19 @@ public class PGConstants {
     public static final String ALLOWED_BANK_CODES = "allowed_bank_codes";
     public static final String ALLOWED_BINS = "allowed_bins";
     public static final String SPLIT_INFO = "split_info";
+    public static final String INTERFACE_TYPE = "interface_type";
+    public static final String INTERFACE_VALUE = "android_sdk";
+    public static final String PG_PAYMENT_HOSTNAME = "pg_payment_hostname";
     public static String POST_PARAMS = "POST_PARAMS";
     public static String HASH_MAP = "HASH_MAP";
     public static String PAYMENT_RESPONSE = "paymentResponse";
+    public static String ERROR_RESPONSE = "errorResponse";
+    public static int ERROR_REQUEST_CODE = 333;
     public static int REQUEST_CODE = 11111;
     public static String CLIENT_RETURN_URL = "";
+    public static int UPI_REQUEST_CODE = 1;
+    public static final String TRAN_ID = "tran_id";
+    public static final String UPI_RES_URL = "https://pgbizbatchsync.omniware.in/v2/fetchupiintentpaymentresponse";
 
     public PGConstants() {
     }
