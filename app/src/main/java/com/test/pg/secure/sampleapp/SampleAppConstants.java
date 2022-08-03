@@ -11,7 +11,7 @@ public class SampleAppConstants {
     public static final String PG_RETURN_URL = "YOUR_RETURN_URL";
 
     //Enter the Mode of Payment Here . Allowed Values are "LIVE" or "TEST".
-    public static final String PG_MODE = "LIVE";
+    public static final String PG_MODE = "TEST";
 
     //PG_CURRENCY is given by the Payment Gateway. Only "INR" Allowed.
     public static final String PG_CURRENCY = "INR";
@@ -20,16 +20,16 @@ public class SampleAppConstants {
     public static final String PG_COUNTRY = "IND";
 
     public static final String PG_AMOUNT = "2";
-    public static final String PG_EMAIL = "XXXX";
-    public static final String PG_NAME = "XXXX";
-    public static final String PG_PHONE = "XXXXX";
+    public static final String PG_EMAIL = "test@gmail.com";
+    public static final String PG_NAME = "test";
+    public static final String PG_PHONE = "9876543210";
     public static       String PG_ORDER_ID = "";
-    public static final String PG_DESCRIPTION = "XXXX";
+    public static final String PG_DESCRIPTION = "test";
     public static final String PG_CITY = "Chennai";
     public static final String PG_STATE = "Tamilnadu";
     public static final String PG_ADD_1 = "address1";
     public static final String PG_ADD_2 = "address2";
-    public static final String PG_ZIPCODE = "XXXXX";
+    public static final String PG_ZIPCODE = "600032";
     public static final String PG_UDF1 = "udf1";
     public static final String PG_UDF2 = "udf2";
     public static final String PG_UDF3 = "udf3";
