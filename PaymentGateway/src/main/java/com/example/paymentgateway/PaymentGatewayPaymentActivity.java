@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -168,21 +170,32 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                 public void onPageStarted(WebView view, String url, Bitmap facIcon) {
                     super.onPageStarted(view, url, facIcon);
                     pb.setVisibility(0);
-                    Log.i("log", "onPageFinished : " + url);
+                    Log.i("log", "onPageStarted : " + url);
                 }
 
                 @Override
                 public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                     Log.i("log", "onReceivedError : " + error.toString());
+                    Log.i("log", "onReceivedError : " + error);
                     super.onReceivedError(view, request, error);
+                }
+
+                @Override
+                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                    Log.i("log", "onReceivedSslError : " + error.getPrimaryError());
+                    Log.i("log", "onReceivedSslError : " + error.toString());
+                    handler.proceed();
+                    super.onReceivedSslError(view, handler, error);
                 }
             });
             WebSettings webSettings = this.webview.getSettings();
             webSettings.setJavaScriptEnabled(true);
             this.webview.addJavascriptInterface(new PaymentGatewayPaymentActivity.MyJavaScriptInterface(this), "Android");
-            this.webview.addJavascriptInterface(new MyJavaScriptInterface((Activity)this), "AndroidInterface");
+//            this.webview.addJavascriptInterface(new MyJavaScriptInterface((Activity)this), "AndroidInterface");
             webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
             webSettings.setDomStorageEnabled(true);
+            webSettings.setLoadWithOverviewMode(true);
+            webSettings.setUseWideViewPort(true);
             this.webview.clearHistory();
             this.webview.clearCache(true);
             this.webview.setWebChromeClient(new WebChromeClient() {
