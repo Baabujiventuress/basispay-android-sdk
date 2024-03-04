@@ -1,4 +1,4 @@
-
+package com.test.pg.secure.sampleapp;
 
 import org.junit.Test;
 
