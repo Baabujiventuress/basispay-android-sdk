@@ -1,12 +1,15 @@
 package com.example.paymentgateway;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.net.http.SslError;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +18,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.JavascriptInterface;
 import android.webkit.JsResult;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -175,6 +179,53 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                     Log.i("log", "onReceivedError : " + error.toString());
                     Log.i("log", "onReceivedError : " + error);
                     super.onReceivedError(view, request, error);
+                }
+
+                @Override
+                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(PaymentGatewayPaymentActivity.this);
+                    String message;
+                    switch (error.getPrimaryError()) {
+                        case SslError.SSL_EXPIRED:
+                            message = "The certificate has expired.";
+                            break;
+                        case SslError.SSL_IDMISMATCH:
+                            message = "The certificate Hostname mismatch.";
+                            break;
+                        case SslError.SSL_UNTRUSTED:
+                            message = "The certificate authority is not trusted.";
+                            break;
+                        case SslError.SSL_DATE_INVALID:
+                            message = "The certificate date is invalid.";
+                            break;
+                        case SslError.SSL_NOTYETVALID:
+                            message = "The certificate is not yet valid.";
+                            break;
+                        default:
+                            message = "Unknown SSL error.";
+                            break;
+                    }
+
+                    builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @SuppressLint("WebViewClientOnReceivedSslError")
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            handler.proceed();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            handler.cancel();
+                        }
+                    });
+                    message += " Do you want to continue anyway?";
+                    builder.setTitle("SSL Certificate Error");
+                    builder.setMessage(message);
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
                 }
             });
             WebSettings webSettings = this.webview.getSettings();
