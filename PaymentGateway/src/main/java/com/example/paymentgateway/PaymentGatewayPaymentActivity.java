@@ -207,7 +207,6 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                     }
 
                     builder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                        @SuppressLint("WebViewClientOnReceivedSslError")
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -227,6 +226,7 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                     final AlertDialog dialog = builder.create();
                     dialog.show();
                 }
+
             });
             WebSettings webSettings = this.webview.getSettings();
             webSettings.setJavaScriptEnabled(true);
