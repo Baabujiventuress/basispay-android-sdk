@@ -183,6 +183,9 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
 
                 @Override
                 public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+//                    Log.i("log", "onReceivedSslError : " + error);
+//                    Log.i("log", "onReceivedSslError : " + error.toString());
+                    Log.i("log", "onReceivedSslError : " + error.getPrimaryError());
                     final AlertDialog.Builder builder = new AlertDialog.Builder(PaymentGatewayPaymentActivity.this);
                     String message;
                     switch (error.getPrimaryError()) {
