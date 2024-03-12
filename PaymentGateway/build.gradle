@@ -1,9 +1,6 @@
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
 }
-group = "com.github.Baabujiventuress"
-version = "2.0.8"
 
 android {
     compileSdkVersion 34
@@ -22,16 +19,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
 
     namespace 'com.example.paymentgateway'
 }
-
 dependencies {
-    //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
