@@ -218,11 +218,13 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                             handler.cancel();
+                            //Cancel Transaction
+                            cancelTransaction();
                         }
                     });
                     message += " Do you want to continue anyway?";
-                    builder.setTitle("SSL Certificate Error");
-                    builder.setMessage(message);
+                    builder.setTitle("Transaction Alert");
+                    builder.setMessage("Do you want to proceed transaction?");
                     final AlertDialog dialog = builder.create();
                     dialog.show();
                 }
@@ -334,6 +336,20 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
 
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public void cancelTransaction() {
+        try {
+            JSONObject pgResponse = new JSONObject();
+            pgResponse.put("status", "failed");
+            pgResponse.put("error_message", "TRANSACTION INCOMPLETE!");
+            Intent paymentResponseCallBackIntent = new Intent();
+            paymentResponseCallBackIntent.putExtra(PGConstants.PAYMENT_RESPONSE, pgResponse.toString());
+            setResult(-1, paymentResponseCallBackIntent);
+            finish();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
