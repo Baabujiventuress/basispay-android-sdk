@@ -349,6 +349,7 @@ public class PaymentGatewayPaymentActivity extends AppCompatActivity {
             setResult(-1, paymentResponseCallBackIntent);
             finish();
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println(ex.getMessage());
         }
     }
